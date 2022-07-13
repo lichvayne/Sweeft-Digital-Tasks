@@ -1,0 +1,26 @@
+create table Teacher(
+TeacherID integer primary key,
+First_Name char(20),
+Last_Name char(30),
+Gender char(10),
+Subject char(30)
+);
+
+create Table Pupil(
+PupilID integer primary key,
+First_Name char(20),
+Last_Name char(30),
+Gender char(10),
+Class char(10)
+);
+
+create table PupilTeacher(
+PupilID integer foreign key references Pupil(PupilID),
+TeacherID integer foreign key references Teacher(TeacherID)
+);
+
+
+select distinct t.First_Name, t.Last_Name from Teacher t
+Inner Join PupilTeacher pt on t.TeacherID = pt.TeacherID
+Inner Join Pupil  p on pt.PupilID = p.PupilID
+where p.First_Name = 'giorgi'
